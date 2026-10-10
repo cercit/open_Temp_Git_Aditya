@@ -38,7 +38,7 @@ button.theme{float:right;border:1px solid var(--line);background:var(--card);col
 <body>
 <div class="wrap">
 <button class="theme" id="t" aria-label="Toggle theme">◐</button>
-<h1>FinStack hackathon: 15 ideas</h1>
+<h1>FinStack hackathon ideas</h1>
 <p class="sub">Team: Sameer + Aditya · Lock the idea at our 3 pm call · Send the flowchart and screens before 8 pm today</p>
 
 <div class="card">
@@ -55,7 +55,26 @@ button.theme{float:right;border:1px solid var(--line);background:var(--card);col
 <p style="margin:8px 0 0">Their words: make it <b>complete, sound and compliant</b>, and don't pile on platform features to impress. Also from the session: a consent checkbox on the first form, onboard an individual (not a business), and use <b>soft pull only</b>.</p>
 </div>
 
-<h2>Top 3 picks</h2>
+<h2>Round 2: out-of-the-box ideas</h2>
+<p class="sub">Same brief, but a user or signal nobody else will pick. Build and Wow out of 5.</p>
+
+<div class="card top">
+<div class="rank">New best pick · #1 + #2 together</div>
+<h3>Notice-period buyout loan, with a "Plan B" for rejects</h3>
+<span class="tag">Salaried job switchers</span><span class="tag">Self-serve</span>
+<p>The new company wants you in 30 days and the old one wants 90 days or a buyout. We underwrite on the new offer letter, old salary credits and EPFO. Anyone knocked out (score 550–649) isn't rejected. They get routed to a credit-builder that turns the drop-off into a customer. Everyone in a Bangalore room has lived this, and no other team will pitch it.</p>
+<ul class="flow"><li>OTP</li><li>Consent</li><li>PAN (pre-fill, name match ≥80%)</li><li>Aadhaar / DigiLocker</li><li>Offer letter + new CTC</li><li>EPFO employment check</li><li>Soft pull</li><li>Bank statement</li><li>Rules</li><li>Offer or Plan B</li></ul>
+<p style="margin:6px 0 0"><b>Rules:</b> new CTC ≥ old · loan ≤ 2 months' new salary · 6–12 months · score 550–649 goes to Plan B, below 550 is rejected. <b>Manual review:</b> offer from a company under 1 year old, or an unverifiable letter. <b>Dashboard:</b> a "rescued from reject" count. <b>Check:</b> is the EPFO API live?</p>
+</div>
+
+<div class="tablewrap">
+<table>
+<thead><tr><th>#</th><th>Idea</th><th>The twist</th><th>Manual review</th><th>Build</th><th>Wow</th></tr></thead>
+<tbody id="rows2"></tbody>
+</table>
+</div>
+
+<h2>Round 1: top 3 picks</h2>
 
 <div class="card top">
 <div class="rank">#1 · Best pick</div>
@@ -123,6 +142,16 @@ const ideas=[
 ["First-time two-wheeler loan, rural","Dealer-assisted, Tier 3 towns","Hybrid: dealer starts, customer finishes KYC; income from bank statement","No bank statement: field verification",5,3,4]];
 const d=n=>'<span class="dots">'+'●'.repeat(n)+'○'.repeat(5-n)+'</span>';
 document.getElementById('rows').innerHTML=ideas.map((r,i)=>`<tr><td class="n">${i+1}</td><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td class="n">${d(r[4])}</td><td class="n">${d(r[5])}</td><td class="n">${d(r[6])}</td></tr>`).join('');
+const ideas2=[
+["Notice-period buyout loan","Underwrite on the new offer letter, old salary credits and EPFO; loan ≤ 2 months' new salary","Offer from a company under 1 year old",5,5],
+["\"Plan B\" for rejected users","A score below 650 routes to a credit-builder (lien FD, reported as a loan) instead of a rejection","Recent write-off or settlement",4,5],
+["Zero-typing debt consolidation","Soft pull pre-fills existing cards and BNPL as tick boxes; one smaller EMI","Any 30+ DPD",4,5],
+["Rent is your credit score","Same amount to the same person monthly for 6+ months proves rent discipline","Rent paid in cash",4,4],
+["Car insurance renewal EMI","RC API pre-fills the car and insurance expiry; money goes to the insurer","RC name ≠ PAN name",5,4],
+["Standby medical credit line","Approve while calm, draw in one tap at the hospital","Draw above the limit",4,4],
+["Returnship loan","Women after a career break: past EPFO history + a new offer letter","No EPFO history",4,4],
+["Visa proof-of-funds loan","Money locked in a lien account until the visa is decided","University not on the list",3,4]];
+document.getElementById('rows2').innerHTML=ideas2.map((r,i)=>`<tr><td class="n">${i+1}</td><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td class="n">${d(r[3])}</td><td class="n">${d(r[4])}</td></tr>`).join('');
 const root=document.documentElement;
 try{const s=localStorage.getItem('hk-theme');if(s)root.dataset.theme=s}catch(e){}
 document.getElementById('t').onclick=()=>{const dark=root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;root.dataset.theme=dark?'light':'dark';try{localStorage.setItem('hk-theme',root.dataset.theme)}catch(e){}};
