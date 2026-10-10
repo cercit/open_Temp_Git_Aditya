@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hackathon Ideas</title>
+<meta name="description" content="FinStack FinTech PM Hackathon: 15 product ideas for Sameer and Aditya">
+<style>
+:root{--bg:#f7f8fa;--card:#fff;--ink:#1b1f24;--mute:#5b6470;--line:#e3e6ea;--accent:#2457d6;--good:#1a8a4a;--soft:#eef3ff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111418;--card:#1a1f25;--ink:#e8ebef;--mute:#9aa4b1;--line:#2b323b;--accent:#6f9bff;--good:#4cc283;--soft:#1d2635}}
+:root[data-theme="dark"]{--bg:#111418;--card:#1a1f25;--ink:#e8ebef;--mute:#9aa4b1;--line:#2b323b;--accent:#6f9bff;--good:#4cc283;--soft:#1d2635}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:28px 16px 60px}
+h1{font-size:1.7rem;margin:0 0 4px}
+h2{font-size:1.25rem;margin:36px 0 12px}
+h3{margin:0 0 6px;font-size:1.05rem}
+.sub{color:var(--mute);margin:0 0 20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin:12px 0}
+.must li{margin:4px 0}
+.tag{display:inline-block;font-size:.75rem;padding:2px 8px;border-radius:99px;background:var(--soft);color:var(--accent);margin-right:6px}
+.top{border-left:4px solid var(--good)}
+.top .rank{color:var(--good);font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.04em}
+.flow{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px;padding:0;list-style:none}
+.flow li{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:4px 9px;font-size:.85rem}
+.flow li:not(:last-child)::after{content:" →";color:var(--mute)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:.9rem}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--soft);font-weight:600}
+td.n{text-align:center;white-space:nowrap}
+.dots{letter-spacing:1px;color:var(--accent)}
+.q li{margin:6px 0}
+footer{color:var(--mute);font-size:.85rem;margin-top:40px}
+button.theme{float:right;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:6px 10px;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="wrap">
+<button class="theme" id="t" aria-label="Toggle theme">◐</button>
+<h1>FinStack hackathon: 15 ideas</h1>
+<p class="sub">Team: Sameer + Aditya · Lock the idea at our 3 pm call · Send the flowchart and screens before 8 pm today</p>
+
+<div class="card">
+<h3>What the brief asks for (every idea must cover these)</h3>
+<ul class="must">
+<li><b>Onboarding:</b> self-serve, assisted or hybrid, picked to suit the user</li>
+<li><b>KYC through APIs</b> (PAN, Aadhaar/DigiLocker). Mandatory; don't skip it</li>
+<li><b>Pre-fill</b> from API responses (e.g. name and DOB from PAN)</li>
+<li><b>Underwriting</b> through APIs: soft-pull bureau and bank statement</li>
+<li><b>Rule engine:</b> journey rules and underwriting rules</li>
+<li><b>Manual approval</b> for edge cases, handled in the back office</li>
+<li><b>Dashboards and funnels</b></li>
+</ul>
+<p style="margin:8px 0 0">Their words: make it <b>complete, sound and compliant</b>, and don't pile on platform features to impress. Also from the session: a consent checkbox on the first form, onboard an individual (not a business), and use <b>soft pull only</b>.</p>
+</div>
+
+<h2>Top 3 picks</h2>
+
+<div class="card top">
+<div class="rank">#1 · Best pick</div>
+<h3>Used-car loan with RC check</h3>
+<span class="tag">Salaried buyer</span><span class="tag">Self-serve</span>
+<p>Uses the vehicle/RC verification API that most teams won't touch. It tackles real fraud: the seller isn't the owner, or the car is still under an old loan. Sameer has worked in vehicle finance, so the rules will be realistic.</p>
+<ul class="flow"><li>OTP</li><li>Consent</li><li>Basic details</li><li>PAN (pre-fill, name match ≥80%)</li><li>Aadhaar / DigiLocker</li><li>RC number (owner, age, hypothecation)</li><li>Soft-pull bureau</li><li>Bank statement</li><li>Offer</li></ul>
+<p style="margin:6px 0 0"><b>Rules:</b> score &lt;650 rejected · RC owner must match the seller · LTV based on car age. <b>Manual review:</b> score 650–700, a car still under another loan, or a car over 8 years old. <b>Risk:</b> the RC API may not be live on pre-prod, so mock it if needed.</p>
+</div>
+
+<div class="card top">
+<div class="rank">#2</div>
+<h3>EV scooter loan for delivery riders</h3>
+<span class="tag">Swiggy / Zomato / Zepto riders</span><span class="tag">Self-serve</span>
+<p>A big underserved group with a strong story: gig workers get rejected for not having a salary slip. We'd underwrite from weekly platform payouts in the bank statement instead, the same "smart underwriting" style as FinStack's dairy-farmer client.</p>
+<ul class="flow"><li>OTP</li><li>Consent</li><li>PAN + Aadhaar</li><li>Rider ID (custom form)</li><li>Bank statement</li><li>Soft pull</li><li>Rules</li><li>Offer</li></ul>
+<p style="margin:6px 0 0"><b>Rules:</b> 4+ weeks of payouts, with the average above a set amount. <b>Manual review:</b> a thin bureau file (no score yet).</p>
+</div>
+
+<div class="card top">
+<div class="rank">#3</div>
+<h3>Skill-course loan with a parent co-applicant</h3>
+<span class="tag">Students</span><span class="tag">Hybrid</span>
+<p>The student has no income, so the parent's KYC and bureau decide the loan. A two-person journey shows we can use the journey builder well, and everyone in the room can relate. <b>Watch out:</b> co-applicant flows take longer to configure.</p>
+</div>
+
+<h2>All 15 ideas</h2>
+<p class="sub">Scores out of 5 · <b>Fit</b> = our edge · <b>Build</b> = doable in the 2-hour build · <b>Wow</b> = memorable</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th>#</th><th>Idea</th><th>User</th><th>Smart underwriting angle</th><th>Manual-review edge case</th><th>Fit</th><th>Build</th><th>Wow</th></tr></thead>
+<tbody id="rows"></tbody>
+</table>
+</div>
+
+<h2>For our 3 pm call</h2>
+<div class="card">
+<ol class="q">
+<li><b>Who is the user?</b> One sentence.</li>
+<li><b>Self-serve, assisted or hybrid?</b> Pick one and say why.</li>
+<li><b>Are the APIs we need live?</b> Check the API Hub list (promised by 4 pm).</li>
+<li><b>Screens:</b> one box per screen with its fields, API, rule, next step and manual-review branch. Pen and paper or a Google Doc is fine; no Figma needed.</li>
+<li><b>Build order:</b> consent → OTP → basic details → PAN + name-match rule → Aadhaar → product step → soft pull → bank statement → rules → back-office review → funnel dashboard.</li>
+</ol>
+</div>
+
+<footer>Made for our FinStack FinTech PM Hackathon team, Oct 2026.</footer>
+</div>
+<script>
+const ideas=[
+["Used-car loan with RC check","Salaried used-car buyer","RC owner must match the seller; car age + price set the max loan (LTV)","Car still under another loan, older than 8 years, or valued far below price",5,4,5],
+["EV scooter loan for delivery riders","Swiggy/Zomato/Zepto riders","Weekly payout credits in the bank statement count as income","Thin bureau file (no score)",5,4,5],
+["Skill-course loan with parent co-applicant","Students","Parent's KYC + bureau decide; course partner pre-approved","Parent score 650–700; course not a partner",4,3,4],
+["Rent-deposit loan for city movers","Freshers relocating","Offer letter + first salary credit; small ticket, 6–12 months","Offer letter only, no salary yet",4,4,4],
+["Kirana working-capital line","Shop owners (agent-assisted)","UPI/QR inflows in the bank statement set the limit","Cash-heavy shop, low digital inflows",4,3,4],
+["Gold loan pre-approval + doorstep appraisal","Anyone needing cash fast","Online KYC + eligibility; gold valued at home","Appraiser value vs declared weight mismatch",3,4,3],
+["Hospital emergency loan","Patient's family (assisted)","Hospital estimate upload; fast track under ₹1 lakh","Above ₹2 lakh, or estimate mismatch",3,4,4],
+["New-to-credit card backed by an FD","First-jobbers, students","No score needed; the FD lien sets the limit","PAN/Aadhaar name mismatch",3,4,3],
+["Solar rooftop loan using electricity bills","Homeowners","6 months of bill payments show the paying habit; bill size sets system size","Rented house (needs owner consent)",4,3,4],
+["Earned-wage access (salary advance)","Blue-collar staff at partner employers","Employer roster + EPFO match; cap at % of days worked","Not on roster; joined under 3 months ago",3,4,3],
+["School-fee EMI","Parents","School partner list; parent bureau + salary credits","Fee above limit; self-employed parent",3,4,3],
+["Fair-offer personal loan","Salaried users tired of loan spam","Clear APR, total cost, 3-day cooling-off","Borderline score: smaller offer + review",5,4,3],
+["Farmer crop-money safe deposit","Farmers at the mandi (assisted)","KYC + nominee; withdraw any time; rule blocks risky products","Nominee KYC missing; large cash triggers AML check",4,4,4],
+["Senior-citizen FD with mis-selling guard","Retirees","KYC + risk profile; rule blocks uninsured bonds","Above insured limit: advisor call",3,4,3],
+["First-time two-wheeler loan, rural","Dealer-assisted, Tier 3 towns","Hybrid: dealer starts, customer finishes KYC; income from bank statement","No bank statement: field verification",5,3,4]];
+const d=n=>'<span class="dots">'+'●'.repeat(n)+'○'.repeat(5-n)+'</span>';
+document.getElementById('rows').innerHTML=ideas.map((r,i)=>`<tr><td class="n">${i+1}</td><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td class="n">${d(r[4])}</td><td class="n">${d(r[5])}</td><td class="n">${d(r[6])}</td></tr>`).join('');
+const root=document.documentElement;
+try{const s=localStorage.getItem('hk-theme');if(s)root.dataset.theme=s}catch(e){}
+document.getElementById('t').onclick=()=>{const dark=root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;root.dataset.theme=dark?'light':'dark';try{localStorage.setItem('hk-theme',root.dataset.theme)}catch(e){}};
+</script>
+</body>
+</html>
